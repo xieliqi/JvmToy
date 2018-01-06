@@ -1,15 +1,18 @@
 package com.jt.parser.classInfo;
 
+import com.jt.parser.classInfo.constantpool.ConstantPools;
+
 public class ClassInfo {
 	
 	private String magic;//u4
-	private String minorVersion;//u2
-	private String majorVersion;//u2
+	private int minorVersion;//u2
+	private int majorVersion;//u2
 	private ConstantPools constantPools;
-	private String accessFlags;//u2
-	private String thisClass;//u2
-	private String superClass;//u2
+	private ClassAccessFlags accessFlags;//u2
+	private int thisClass;//u2
+	private int superClass;//u2
 	private Interfaces interfaces;
+	private Fields fields;
 	private Methods methods;
 	private Attributes attributes;
 	
@@ -18,27 +21,34 @@ public class ClassInfo {
 		System.out.println("minorVersion:"+minorVersion);
 		System.out.println("majorVersion:"+majorVersion);
 		System.out.println("constantPools:"+constantPools);
+		System.out.println("accessFlags:"+accessFlags);
+		System.out.println("thisClass:"+thisClass);
+		System.out.println("superClass:"+superClass);
+		System.out.println("interfaces:"+interfaces);
+		System.out.println("fields:"+fields);
+		System.out.println("methods:"+methods);
+		System.out.println("attributes:"+attributes);
 	}
 	
 	public void setMagic(String magic) {
 		this.magic = magic;
 	}
-	public void setMinorVersion(String minorVersion) {
+	public void setMinorVersion(int minorVersion) {
 		this.minorVersion = minorVersion;
 	}
-	public void setMajorVersion(String majorVersion) {
+	public void setMajorVersion(int majorVersion) {
 		this.majorVersion = majorVersion;
 	}
 	public void setConstantPools(ConstantPools constantPools) {
 		this.constantPools = constantPools;
 	}
-	public void setAccessFlags(String accessFlags) {
+	public void setAccessFlags(ClassAccessFlags accessFlags) {
 		this.accessFlags = accessFlags;
 	}
-	public void setThisClass(String thisClass) {
+	public void setThisClass(int thisClass) {
 		this.thisClass = thisClass;
 	}
-	public void setSuperClass(String superClass) {
+	public void setSuperClass(int superClass) {
 		this.superClass = superClass;
 	}
 	public void setInterfaces(Interfaces interfaces) {
@@ -53,22 +63,22 @@ public class ClassInfo {
 	public String getMagic() {
 		return magic;
 	}
-	public String getMinorVersion() {
+	public int getMinorVersion() {
 		return minorVersion;
 	}
-	public String getMajorVersion() {
+	public int getMajorVersion() {
 		return majorVersion;
 	}
 	public ConstantPools getConstantPools() {
 		return constantPools;
 	}
-	public String getAccessFlags() {
+	public ClassAccessFlags getAccessFlags() {
 		return accessFlags;
 	}
-	public String getThisClass() {
+	public int getThisClass() {
 		return thisClass;
 	}
-	public String getSuperClass() {
+	public int getSuperClass() {
 		return superClass;
 	}
 	public Interfaces getInterfaces() {
@@ -79,6 +89,14 @@ public class ClassInfo {
 	}
 	public Attributes getAttributes() {
 		return attributes;
+	}
+
+	public Fields getFields() {
+		return fields;
+	}
+
+	public void setFields(Fields fields) {
+		this.fields = fields;
 	}
 	
 }
