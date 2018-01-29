@@ -15,7 +15,7 @@ public class ConstantLong extends ConstantTag{
 
 	@Override
 	public String toString() {
-		return "ConstantLong [bytes=" + bytes + ", tag=" + tag + "]";
+		return "ConstantLong " + bytes;
 	}
 
 	@Override

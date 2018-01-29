@@ -67,6 +67,9 @@ public class ClassInfoUtils{
 	}
 	
 	public String getClassName(int index){
+		if(index==0){
+			return "";
+		}
 		ConstantTag[] constants = classInfo.getConstantPools().getPoolInfos();
 		ConstantTag c = constants[index];
 		int nameIndex = ((ConstantClass)c).getNameIndex();

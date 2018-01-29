@@ -21,8 +21,7 @@ public class ConstantNameAndType extends ConstantTag{
 
 	@Override
 	public String toString() {
-		return "ConstantNameAndType [nameIndex=" + nameIndex + ", descriptorIndex=" + descriptorIndex + ", tag=" + tag
-				+ "]";
+		return "ConstantNameAndType #" + nameIndex + ", #" + descriptorIndex;
 	}
 	
 }

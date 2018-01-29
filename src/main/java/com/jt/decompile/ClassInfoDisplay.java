@@ -13,6 +13,10 @@ public class ClassInfoDisplay {
 	public static final int TYPE_ANNOTATION = 4;
 
 	private String className;
+	
+	private String minorVersion;
+	
+	private String majorVersion;
 
 	private Set<String> accessFlags;
 

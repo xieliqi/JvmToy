@@ -21,8 +21,7 @@ public class ConstantMethodHandle extends ConstantTag{
 
 	@Override
 	public String toString() {
-		return "ConstantMethodHandle [referenceKind=" + referenceKind + ", referenceIndex=" + referenceIndex + ", tag="
-				+ tag + "]";
+		return "ConstantMethodHandle referenceKind=" + referenceKind + ", referenceIndex=" + referenceIndex;
 	}
 
 }

@@ -1,10 +1,13 @@
 package com.jt.decompile.builder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.jt.constant.OpCodes;
 import com.jt.constant.Types;
+import com.jt.decompile.CodeInfoDisplay;
 import com.jt.decompile.MethodInfoDisplay;
 import com.jt.decompile.ParamInfoDisplay;
 import com.jt.parser.classInfo.ClassInfo;
@@ -54,12 +57,12 @@ public class MethodInfoBuilder {
 		String[] strs = des.split("\\)");
 		// params
 		strs[0] = strs[0].substring(1);
-		if(StringUtils.isNotBlank(strs[0])){
+		if (StringUtils.isNotBlank(strs[0])) {
 			List<String> params = Types.spiltJvmTypes(strs[0]);
 			ParamInfoDisplay[] paramArr = new ParamInfoDisplay[params.size()];
 			for (int i = 0; i < params.size(); i++) {
 				ParamInfoDisplay paramInfo = new ParamInfoDisplay();
-				paramInfo.setName("arg"+(i+1));
+				paramInfo.setName("arg" + (i + 1));
 				paramInfo.setType(Types.getJavaType(params.get(i)));
 				paramArr[i] = paramInfo;
 			}
@@ -73,7 +76,10 @@ public class MethodInfoBuilder {
 		AbstractAttribute[] attrs = method.getAttributes().getAttributes();
 		for (AbstractAttribute attr : attrs) {
 			if (attr instanceof Code) {
-
+				Code code = (Code) attr;
+				code.getExceptionTables();
+				parseCodes(methodInfo, code.getCodes());
+				code.getAttributes();
 			} else if (attr instanceof Exceptions) {
 				methodInfo.setExceptions(AttributeUtils.getExceptions((Exceptions) attr));
 			} else if (attr instanceof Signature) {
@@ -87,14 +93,16 @@ public class MethodInfoBuilder {
 				methodInfo.setRuntimeInvisibleAnnotations(
 						AttributeUtils.getRuntimeInvisibleAnnotations((RuntimeInvisibleAnnotations) attr));
 			} else if (attr instanceof RuntimeVisibleParameterAnnotations) {
-				RuntimeVisibleParameterAnnotations pa = (RuntimeVisibleParameterAnnotations)attr;
+				RuntimeVisibleParameterAnnotations pa = (RuntimeVisibleParameterAnnotations) attr;
 				for (int i = 0; i < pa.getParameterAnnotations().length; i++) {
-					methodInfo.getParams()[i].setRuntimeVisibleAnnotations(AnnotationInfoBuilder.build(pa.getParameterAnnotations()[i].getAnnotations()));
+					methodInfo.getParams()[i].setRuntimeVisibleAnnotations(
+							AnnotationInfoBuilder.build(pa.getParameterAnnotations()[i].getAnnotations()));
 				}
 			} else if (attr instanceof RuntimeInvisibleParameterAnnotations) {
-				RuntimeInvisibleParameterAnnotations pa = (RuntimeInvisibleParameterAnnotations)attr;
+				RuntimeInvisibleParameterAnnotations pa = (RuntimeInvisibleParameterAnnotations) attr;
 				for (int i = 0; i < pa.getParameterAnnotations().length; i++) {
-					methodInfo.getParams()[i].setRuntimeInvisibleAnnotations(AnnotationInfoBuilder.build(pa.getParameterAnnotations()[i].getAnnotations()));
+					methodInfo.getParams()[i].setRuntimeInvisibleAnnotations(
+							AnnotationInfoBuilder.build(pa.getParameterAnnotations()[i].getAnnotations()));
 				}
 			} else if (attr instanceof AnnotationDefault) {
 				System.out.println(attr);
@@ -102,6 +110,34 @@ public class MethodInfoBuilder {
 				// attr).getDefaultValue());
 			}
 		}
+	}
+
+	private static void parseCodes(MethodInfoDisplay methodInfo, byte[] codes) {
+		List<CodeInfoDisplay> codeInfoList = new ArrayList<CodeInfoDisplay>();
+		int index = 0;
+		while (index < codes.length) {
+			CodeInfoDisplay ci = new CodeInfoDisplay();
+			int op = 0xff&(codes[index++]);
+			ci.setOp(op);
+			if (OpCodes.getNoOfOperands(op) > 0) {
+				int otCount = (int)OpCodes.getOperandTypeCount(op);
+				ci.setPs(new int[otCount]);
+				ci.setPts(new short[otCount]);
+				for (int i = 0; i < otCount; i++) {
+					short type = OpCodes.getOperandType(op, i);
+					ci.getPts()[i] = type;
+					if(type==OpCodes.T_BYTE){
+						ci.getPs()[i] = codes[index++];
+					}else if(type==OpCodes.T_SHORT){
+						ci.getPs()[i] = (short)(codes[index++] << 8) + (codes[index++] << 0);
+					}else if(type==OpCodes.T_INT){
+						ci.getPs()[i] = (int)((codes[index++] << 24) + (codes[index++] << 16) + (codes[index++] << 8) + (codes[index++] << 0));
+					}
+				}
+			}
+			codeInfoList.add(ci);
+		}
+		methodInfo.setCodes(codeInfoList);
 	}
 
 }

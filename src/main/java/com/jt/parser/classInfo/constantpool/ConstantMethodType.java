@@ -15,7 +15,7 @@ public class ConstantMethodType extends ConstantTag{
 
 	@Override
 	public String toString() {
-		return "ConstantMethodType [descriptorIndex=" + descriptorIndex + ", tag=" + tag + "]";
+		return "ConstantMethodType #" + descriptorIndex;
 	}
 
 }

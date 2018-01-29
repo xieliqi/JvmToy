@@ -6,26 +6,19 @@ package com.jt.parser.classInfo.attributes;
  */
 public class Deprecated extends AbstractAttribute {
 
-	private int signatureIndex;// u2 指向CONSTANT_Utf8_info
 
-	public Deprecated(int attributeNameIndex, int attributeLength, int signatureIndex) {
+	public Deprecated(int attributeNameIndex, int attributeLength) {
 		super(attributeNameIndex, attributeLength);
-		this.signatureIndex = signatureIndex;
 	}
 
 	@Override
 	public String getName() {
-		return "Signature";
-	}
-
-	public int getSignatureIndex() {
-		return signatureIndex;
+		return "Deprecated";
 	}
 
 	@Override
 	public String toString() {
-		return "Signature [signatureIndex=" + signatureIndex + ", attributeNameIndex=" + attributeNameIndex
-				+ ", attributeLength=" + attributeLength + ", getName()=" + getName() + "]";
+		return "Deprecated [attributeNameIndex=" + attributeNameIndex + ", attributeLength=" + attributeLength + "]";
 	}
 
 }

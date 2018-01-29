@@ -2,6 +2,9 @@ package com.jt.parser.classInfo.attributes;
 
 import java.util.Arrays;
 
+import com.jt.constant.OpCodes;
+import com.jt.decompile.CodeInfoDisplay;
+import com.jt.decompile.MethodInfoDisplay;
 import com.jt.parser.classInfo.Attributes;
 
 public class Code extends AbstractAttribute {
@@ -25,7 +28,7 @@ public class Code extends AbstractAttribute {
 
 	@Override
 	public String getName() {
-		return "ConstantValue";
+		return "Code";
 	}
 
 	public int getMaxStack() {
@@ -51,10 +54,9 @@ public class Code extends AbstractAttribute {
 	@Override
 	public String toString() {
 		return "Code [maxStack=" + maxStack + ", maxLocals=" + maxLocals + ", codes=" + Arrays.toString(codes)
-				+ ", exceptionTables=" + exceptionTables + ", attributes=" + attributes + ", attributeNameIndex="
-				+ attributeNameIndex + ", attributeLength=" + attributeLength + ", getName()=" + getName() + "]";
+				+ ", exceptionTables=" + Arrays.toString(exceptionTables) + ", attributes=" + attributes;
 	}
-
+	
 	public static class ExceptionTable {
 
 		private int startPc;// u2

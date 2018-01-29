@@ -15,7 +15,7 @@ public @interface TestAnnotation {
 	char b();
 	short c();
 	boolean d();
-	int e();
+	int e() default 1;
 	float f();
 	double g();
 	String str();
@@ -24,6 +24,6 @@ public @interface TestAnnotation {
 	TestEnum enum2();
 	
 	public @interface TestAnnotation2 {
-		
+		int values() default 1;
 	}
 }

@@ -15,7 +15,7 @@ public class ConstantFloat extends ConstantTag{
 
 	@Override
 	public String toString() {
-		return "ConstantFloat [bytes=" + bytes + ", tag=" + tag + "]";
+		return "ConstantFloat " + bytes;
 	}
 
 }

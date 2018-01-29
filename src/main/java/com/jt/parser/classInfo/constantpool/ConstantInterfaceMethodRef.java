@@ -22,8 +22,8 @@ public class ConstantInterfaceMethodRef extends ConstantTag{
 
 	@Override
 	public String toString() {
-		return "ConstantInterfaceMethodRef [classIndex=" + classIndex + ", nameAndTypeIndex=" + nameAndTypeIndex
-				+ ", tag=" + tag + "]";
+		return "ConstantInterfaceMethodRef #" + classIndex + ".#" + nameAndTypeIndex
+				;
 	}
 	
 }

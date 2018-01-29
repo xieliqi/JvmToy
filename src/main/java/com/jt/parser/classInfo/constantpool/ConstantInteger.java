@@ -16,7 +16,7 @@ public class ConstantInteger extends ConstantTag{
 
 	@Override
 	public String toString() {
-		return "ConstantInteger [bytes=" + bytes + ", tag=" + tag + "]";
+		return "ConstantInteger " + bytes;
 	}
 	
 }

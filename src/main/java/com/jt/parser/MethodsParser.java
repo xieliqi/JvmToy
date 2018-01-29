@@ -22,6 +22,5 @@ public class MethodsParser {
 		}
 		return new Methods(methods);
 	}
-
 	
 }

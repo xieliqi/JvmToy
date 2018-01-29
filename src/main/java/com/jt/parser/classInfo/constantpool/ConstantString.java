@@ -15,7 +15,7 @@ public class ConstantString extends ConstantTag{
 
 	@Override
 	public String toString() {
-		return "ConstantString [stringIndex=" + stringIndex + ", tag=" + tag + "]";
+		return "ConstantString #" + stringIndex;
 	}
 
 }

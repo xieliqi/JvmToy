@@ -10,25 +10,13 @@ public class ClassInfo {
 	private ConstantPools constantPools;
 	private ClassAccessFlags accessFlags;//u2
 	private int thisClass;//u2
+	private String thisClassName;
 	private int superClass;//u2
+	private String superClassName;
 	private Interfaces interfaces;
 	private Fields fields;
 	private Methods methods;
 	private Attributes attributes;
-	
-	public void display(){
-		System.out.println("magic:"+magic);
-		System.out.println("minorVersion:"+minorVersion);
-		System.out.println("majorVersion:"+majorVersion);
-		System.out.println("constantPools:"+constantPools);
-		System.out.println("accessFlags:"+accessFlags);
-		System.out.println("thisClass:"+thisClass);
-		System.out.println("superClass:"+superClass);
-		System.out.println("interfaces:"+interfaces);
-		System.out.println("fields:"+fields);
-		System.out.println("methods:"+methods);
-		System.out.println("attributes:"+attributes);
-	}
 	
 	public void setMagic(String magic) {
 		this.magic = magic;
@@ -98,5 +86,16 @@ public class ClassInfo {
 	public void setFields(Fields fields) {
 		this.fields = fields;
 	}
-	
+	public String getThisClassName() {
+		return thisClassName;
+	}
+	public void setThisClassName(String thisClassName) {
+		this.thisClassName = thisClassName;
+	}
+	public String getSuperClassName() {
+		return superClassName;
+	}
+	public void setSuperClassName(String superClassName) {
+		this.superClassName = superClassName;
+	}
 }

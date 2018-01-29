@@ -1,5 +1,6 @@
 package com.jt.decompile;
 
+import java.util.List;
 import java.util.Set;
 
 public class MethodInfoDisplay{
@@ -23,6 +24,8 @@ public class MethodInfoDisplay{
 	private AnnotationInfoDisplay[] runtimeInvisibleAnnotations;
 	
 	private String[] exceptions;
+	
+	private List<CodeInfoDisplay> codes;
 
 	public String getMethodName() {
 		return methodName;
@@ -103,4 +106,13 @@ public class MethodInfoDisplay{
 	public void setExceptions(String[] exceptions) {
 		this.exceptions = exceptions;
 	}
+
+	public List<CodeInfoDisplay> getCodes() {
+		return codes;
+	}
+
+	public void setCodes(List<CodeInfoDisplay> codes) {
+		this.codes = codes;
+	}
+	
 }

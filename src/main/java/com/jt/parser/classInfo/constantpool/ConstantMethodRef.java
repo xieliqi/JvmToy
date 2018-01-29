@@ -21,8 +21,7 @@ public class ConstantMethodRef extends ConstantTag{
 
 	@Override
 	public String toString() {
-		return "ConstantMethodRef [classIndex=" + classIndex + ", nameAndTypeIndex=" + nameAndTypeIndex + ", tag=" + tag
-				+ "]";
+		return "ConstantMethodRef #" + classIndex + ".#" + nameAndTypeIndex;
 	}
 	
 }

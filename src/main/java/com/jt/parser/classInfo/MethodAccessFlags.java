@@ -141,6 +141,9 @@ public class MethodAccessFlags {
 		if(isSynthetic()){
 			str += "ACC_SYNTHETIC,";
 		}
+		if(str.length()==0){
+			return str;
+		}
 		return str.substring(0, str.length()-1);
 	}
 

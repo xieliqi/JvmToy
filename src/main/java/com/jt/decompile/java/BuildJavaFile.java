@@ -2,13 +2,14 @@ package com.jt.decompile.java;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.security.Policy.Parameters;
 import java.util.Map.Entry;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.jt.constant.OpCodes;
 import com.jt.decompile.AnnotationInfoDisplay;
 import com.jt.decompile.ClassInfoDisplay;
+import com.jt.decompile.CodeInfoDisplay;
 import com.jt.decompile.FieldInfoDisplay;
 import com.jt.decompile.MethodInfoDisplay;
 import com.jt.decompile.ParamInfoDisplay;
@@ -105,7 +106,7 @@ public class BuildJavaFile {
 				} else {
 					newLine(methodStr);
 					newLine("\t" + "{");
-					displayCodeBlock();
+					displayCodeBlock(method);
 					newLine("\t" + "}");
 				}
 				newLine();
@@ -152,8 +153,17 @@ public class BuildJavaFile {
 		return annoJava;
 	}
 
-	private static void displayCodeBlock() {
-
+	private static void displayCodeBlock(MethodInfoDisplay method) {
+		for (CodeInfoDisplay code : method.getCodes()) {
+			String codeLine = "\t\t";
+			codeLine += OpCodes.getOpcodeName(code.getOp());
+			if(code.getPs()!=null){
+				for (int p : code.getPs()) {
+					codeLine += " "+p; 
+				}
+			}
+			System.out.println(codeLine);
+		}
 	}
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {

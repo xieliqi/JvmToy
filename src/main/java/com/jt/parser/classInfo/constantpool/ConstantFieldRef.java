@@ -21,8 +21,7 @@ public class ConstantFieldRef extends ConstantTag{
 
 	@Override
 	public String toString() {
-		return "ConstantFieldRef [classIndex=" + classIndex + ", nameAndTypeIndex=" + nameAndTypeIndex + ", tag=" + tag
-				+ "]";
+		return "ConstantFieldRef #" + classIndex + ".#" + nameAndTypeIndex;
 	}
 
 }

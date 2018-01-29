@@ -111,7 +111,7 @@ public class FieldAccessFlags {
 		if(isEnum()){
 			str += "ACC_ENUM,";
 		}
-		return str.substring(0, str.length()-1);
+		return str.substring(0, Math.max(0, str.length()-1));
 	}
 
 }

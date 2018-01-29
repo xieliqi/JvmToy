@@ -1,6 +1,7 @@
 package com.jt.parser.classInfo.attributes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -55,10 +56,14 @@ public class StackMapTable extends AbstractAttribute {
 
 		private VerificationTypeInfo[] locals;// SAME_LOCALS_1_STACK_ITEM、SAME_LOCALS_1_STACK_ITEM_EXTENDED、APPEND
 
-		public StackMapFrame(int frameType, int offsetDelta, VerificationTypeInfo[] locals) {
+		private VerificationTypeInfo[] stackItems;// SAME_LOCALS_1_STACK_ITEM、SAME_LOCALS_1_STACK_ITEM_EXTENDED、APPEND
+
+		
+		public StackMapFrame(int frameType, int offsetDelta, VerificationTypeInfo[] locals, VerificationTypeInfo[] stackItems) {
 			this.frameType = frameType;
 			this.offsetDelta = offsetDelta;
 			this.locals = locals;
+			this.stackItems = stackItems;
 		}
 
 		public int getFrameType() {
@@ -75,8 +80,8 @@ public class StackMapTable extends AbstractAttribute {
 
 		@Override
 		public String toString() {
-			return "StackMapFrame [frameType=" + frameType + ", offsetDelta=" + offsetDelta + ", locals=" + locals
-					+ "]";
+			return "StackMapFrame [frameType=" + frameType + ", offsetDelta=" + offsetDelta + ", locals="
+					+ Arrays.toString(locals) + ", stackItems=" + Arrays.toString(stackItems) + "]";
 		}
 
 	}

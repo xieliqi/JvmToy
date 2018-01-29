@@ -15,7 +15,7 @@ public class ConstantDouble extends ConstantTag{
 
 	@Override
 	public String toString() {
-		return "ConstantDouble [value=" + value + ", tag=" + tag + "]";
+		return "ConstantDouble " + value;
 	}
 
 	@Override
